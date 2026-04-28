@@ -57,6 +57,10 @@ async def lifespan(app:FastAPI):
 app=FastAPI(title="VideoSaver API",version="1.0.0",lifespan=lifespan)
 app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
 
+@app.get("/")
+async def root():
+    return{"name":"VideoSaver API","version":"1.0.0","status":"running","health":"/api/health","platforms":"/api/platforms"}
+
 @app.get("/api/health")
 async def health():
     deps={"ffmpeg":False,"yt-dlp":False}
