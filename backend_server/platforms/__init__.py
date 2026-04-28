@@ -1,5 +1,6 @@
 from .base import BaseParser,identify_platform
-from .douyin import DouyinParser,TikTokParser
+from .douyin import DouyinParser
+from .tiktok import TikTokParser
 from .bilibili import BilibiliParser
 from .youtube import YouTubeParser
 from .kuaishou import KuaishouParser
