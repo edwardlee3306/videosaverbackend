@@ -26,10 +26,3 @@ class DouyinParser(BaseParser):
             return await self._parse_with_ytdlp(url)
         except Exception:
             return await self._parse_with_ytdlp(url)
-class TikTokParser(BaseParser):
-    def __init__(self,platform_key="tiktok",platform_name="TikTok"):
-        super().__init__(platform_key,platform_name)
-    async def parse(self,url):
-        try:
-            d=await self._parse_with_ytdlp(url);d["watermark"]=False;return d
-        except Exception as e:raise RuntimeError(f"TikTok解析失败: {e}")
