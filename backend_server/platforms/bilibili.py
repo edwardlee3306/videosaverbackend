@@ -22,6 +22,7 @@ class BilibiliParser(BaseParser):
                     r2=await c.get(f"https://api.bilibili.com/x/player/playurl?bvid={vid}&qn={qn}")
                     d2=r2.json()
                     if d2.get("code")==0and d2.get("data",{}).get("durl"):vu=d2["data"]["durl"][0].get("url","")or d2["data"]["durl"][0].get("backup_url",[""])[0];break
+                if not vu:return await self._parse_with_ytdlp(url)
                 return{"title":title,"video_url":vu,"cover_url":cv,"duration":du,"file_size":0,"width":w,"height":ht,"resolution":f"{w}x{ht}"if w and ht else"","fps":30,"ext":"mp4","extractor":"bilibili_api","watermark":False}
         except Exception as e:
             return await self._parse_with_ytdlp(url)
